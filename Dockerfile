@@ -1,7 +1,9 @@
 # https://github.com/instructure/canvas-lms/wiki/Production-Start#installing-postgres
 # https://docs.docker.com/examples/postgresql_service/
 
-FROM kjellm/mmooc:base
+FROM ubuntu:12.04
+
+RUN apt-get -y update
 
 RUN apt-get -y install postgresql-9.1 postgresql-contrib-9.1
 
