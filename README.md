@@ -1,4 +1,4 @@
 mmooc-docker-postgresql
 =======================
 
-Docker imge for the Matematikk-MOOC database server
+Build scipts for Matematikk-MOOC Redis Docker image
