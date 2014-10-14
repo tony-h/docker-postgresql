@@ -2,7 +2,4 @@
 
 datadir=/var/lib/postgresql/9.1/main
 
-chown postgres $datadir
-chmod 0700 $datadir
-
 /usr/lib/postgresql/9.1/bin/postgres -D $datadir -c config_file=/etc/postgresql/9.1/main/postgresql.conf "$@"
