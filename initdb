@@ -1,0 +1,16 @@
+#! /bin/bash
+
+#set -e
+set -x
+
+datadir=/var/lib/postgresql/9.1/main
+chown postgres $datadir
+chmod 0700 $datadir
+initdb --pgdata $datadir
+
+service postgresql start
+cat /var/log/postgresql/*
+exit
+psql --command "CREATE USER canvas WITH NOSUPERUSER NOCREATEDB NOCREATEROLE PASSWORD '$(DBPASS)'"
+createdb canvas_production --owner=canvas
+createdb canvas_queue_production --owner=canvas
