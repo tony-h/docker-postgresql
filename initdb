@@ -20,3 +20,7 @@ cat /var/log/postgresql/*
 su postgres -c "psql --command \"CREATE USER canvas WITH NOSUPERUSER NOCREATEDB NOCREATEROLE PASSWORD '${DBPASS}'\""
 su postgres -c "createdb canvas_production --owner=canvas"
 su postgres -c "createdb canvas_queue_production --owner=canvas"
+
+# The following is purely for running test during development. Not
+# used in production.
+su postgres -c "createdb canvas_test --owner=canvas"
