@@ -11,16 +11,14 @@ postgres_data=/var/lib/postgresql/9.1/main
 
 mkdir -p $postgres_data
 chown -R postgres:postgres $postgres_data
-su postgres -c "/usr/lib/postgresql/9.1/bin/initdb -D $postgres_data"
+su postgres -c "/usr/lib/postgresql/9.1/bin/initdb -D $postgres_data -E 'UTF-8'"
 ln -s /etc/ssl/certs/ssl-cert-snakeoil.pem $postgres_data/server.crt
 ln -s /etc/ssl/private/ssl-cert-snakeoil.key $postgres_data/server.key
 
 service postgresql start
 cat /var/log/postgresql/*
-su postgres -c "psql --command \"CREATE USER canvas WITH NOSUPERUSER NOCREATEDB NOCREATEROLE PASSWORD '${DBPASS}'\""
+
+# Need CREATEDB to be able to run tests
+su postgres -c "psql --command \"CREATE USER canvas WITH NOSUPERUSER CREATEDB NOCREATEROLE PASSWORD '${DBPASS}'\""
 su postgres -c "createdb canvas_production --owner=canvas"
 su postgres -c "createdb canvas_queue_production --owner=canvas"
-
-# The following is purely for running test during development. Not
-# used in production.
-su postgres -c "createdb canvas_test --owner=canvas"
