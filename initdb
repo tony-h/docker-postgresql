@@ -9,6 +9,11 @@ fi
 
 postgres_data=/var/lib/postgresql/9.1/main
 
+if [ "$(ls -A $postgres_data)" ]; then
+    echo "DB already initialized"
+    exit 0
+fi
+
 mkdir -p $postgres_data
 chown -R postgres:postgres $postgres_data
 su postgres -c "/usr/lib/postgresql/9.1/bin/initdb -D $postgres_data -E 'UTF-8'"
