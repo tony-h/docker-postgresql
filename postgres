@@ -1,5 +1,5 @@
 #! /bin/bash
 
-datadir=/var/lib/postgresql/9.1/main
+datadir=/var/lib/postgresql/9.3/main
 
-/usr/lib/postgresql/9.1/bin/postgres -D $datadir -c config_file=/etc/postgresql/9.1/main/postgresql.conf "$@"
+/usr/lib/postgresql/9.3/bin/postgres -D $datadir -c config_file=/etc/postgresql/9.3/main/postgresql.conf "$@"

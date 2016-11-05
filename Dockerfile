@@ -1,15 +1,15 @@
 # https://github.com/instructure/canvas-lms/wiki/Production-Start#installing-postgres
 # https://docs.docker.com/examples/postgresql_service/
 
-FROM ubuntu:12.04
+FROM ubuntu:14.04
 
 RUN apt-get -y update && \
-    apt-get -y install postgresql-9.1 postgresql-contrib-9.1
+    apt-get -y install postgresql-9.3 
 
 EXPOSE 5432
 
-ADD pg_hba.conf /etc/postgresql/9.1/main/
-ADD postgresql.conf /etc/postgresql/9.1/main/
+ADD pg_hba.conf /etc/postgresql/9.3/main/
+ADD postgresql.conf /etc/postgresql/9.3/main/
 ADD initdb /root/initdb
 
 RUN mkdir /home/postgres && \
